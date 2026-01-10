@@ -1,11 +1,11 @@
-//Package embed is an extension based on goldmark-emoji(http://github.com/yuin/goldmark-emoji) for goldmark(http://github.com/yuin/goldmark)
+// Package embed is an extension based on goldmark-emoji(http://github.com/yuin/goldmark-emoji) for goldmark(http://github.com/yuin/goldmark)
 package embed
 
 import (
 	"fmt"
 	"html"
 
-	geast "goldmark-embed/ast"
+	geast "github.com/zincarla/goldmark-embed/ast"
 
 	"github.com/yuin/goldmark"
 	"github.com/yuin/goldmark/ast"
@@ -25,12 +25,12 @@ func NewParser() parser.InlineParser {
 	return defaultEmbedParser
 }
 
-//Trigger returns the the required bytes to trigger this parser
+// Trigger returns the the required bytes to trigger this parser
 func (s *embedParser) Trigger() []byte {
 	return []byte{'!'} //[](
 }
 
-//Parse is called when goldmark detects this objects Trigger()
+// Parse is called when goldmark detects this objects Trigger()
 func (s *embedParser) Parse(parent ast.Node, block text.Reader, pc parser.Context) ast.Node {
 	line, _ := block.PeekLine()
 
@@ -165,7 +165,7 @@ func (r *embedHTMLRenderer) RegisterFuncs(reg renderer.NodeRendererFuncRegistere
 	reg.Register(geast.KindEmbed, r.renderEmbed)
 }
 
-//renderEmbed is called by gomark to actually render our custom AST node. Goldmark is aware of this function through RegisterFuncs above
+// renderEmbed is called by gomark to actually render our custom AST node. Goldmark is aware of this function through RegisterFuncs above
 func (r *embedHTMLRenderer) renderEmbed(w util.BufWriter, source []byte, n ast.Node, entering bool) (ast.WalkStatus, error) {
 
 	if !entering {
@@ -181,7 +181,7 @@ func (r *embedHTMLRenderer) renderEmbed(w util.BufWriter, source []byte, n ast.N
 	return ast.WalkContinue, nil
 }
 
-//embed is a generic embed goldmark extender, this just acts as a single entry point for adding our renderor, AST node, and parser to goldmark
+// embed is a generic embed goldmark extender, this just acts as a single entry point for adding our renderor, AST node, and parser to goldmark
 type embed struct {
 }
 

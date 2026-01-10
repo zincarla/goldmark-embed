@@ -1,5 +1,5 @@
-module goldmark-embed
+module github.com/zincarla/goldmark-embed
 
-go 1.18
+go 1.25.5
 
-require github.com/yuin/goldmark v1.5.4 // indirect
+require github.com/yuin/goldmark v1.7.16
