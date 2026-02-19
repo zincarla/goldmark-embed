@@ -27,21 +27,21 @@ func NewParser() parser.InlineParser {
 
 // Trigger returns the the required bytes to trigger this parser
 func (s *embedParser) Trigger() []byte {
-	return []byte{'!'} //[](
+	return []byte{'?'} //[](
 }
 
 // Parse is called when goldmark detects this objects Trigger()
 func (s *embedParser) Parse(parent ast.Node, block text.Reader, pc parser.Context) ast.Node {
 	line, _ := block.PeekLine()
 
-	if len(line) < 5 { //Not even long enough for ![]()
+	if len(line) < 5 { //Not even long enough for ?[]()
 		return nil
 	}
-	if line[1] != '[' || line[2] != ']' || line[3] != '(' { //Verify beginning ![](
+	if line[1] != '[' || line[2] != ']' || line[3] != '(' { //Verify beginning ?[](
 		return nil
 	}
 
-	i := 4 //Start after the first parenthesis ![](
+	i := 4 //Start after the first parenthesis ?[](
 	//Then parse the line until we either give up due to improper format, or when we have the data needed for the node
 	//Format of this node should be "<mimetype> <url> <mimetype> <url> <mimetype> <url>", at least once and repeated any number of times optionally quoted around mimetype and url
 	var embedData []geast.EmbedData
