@@ -22,6 +22,18 @@ if err := md.Convert(source, &buf); err != nil {
 }
 ```
 
+In markdown:
+
+```markdown
+?[]("mime/format" "./some/path.mp4")
+```
+
+Additional formats can be added to same statement like
+
+```markdown
+?[]("video/mp4" "./path.mp4" "video/ogg" "./path.ogg")
+```
+
 ## Goldmark Extension dev notes
 
 Things I learned about goldmark extensions. You have 3 main things you need to create. An AST node, a renderer, and a parser.
